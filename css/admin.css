@@ -1,0 +1,183 @@
+/* Admin Page */
+.admin-container {
+    display: flex;
+    height: calc(100vh - var(--header-height));
+}
+
+.admin-sidebar {
+    width: 200px;
+    background-color: var(--surface-color);
+    border-right: 1px solid var(--border-color);
+    padding: 16px 0;
+}
+
+.admin-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.admin-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 0 8px;
+    transition: all 0.2s;
+}
+
+.admin-nav-item i {
+    width: 20px;
+    text-align: center;
+}
+
+.admin-nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .admin-nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.admin-nav-item.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.admin-section {
+    display: none;
+}
+
+.admin-section.active {
+    display: block;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.admin-section h2 {
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.admin-card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Tables */
+.table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th, 
+.admin-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table th {
+    font-weight: 500;
+    color: var(--text-secondary);
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-mode .admin-table th {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover td {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dark-mode .admin-table tr:hover td {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.table-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    padding: 6px;
+    border-radius: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-color);
+}
+
+.dark-mode .action-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.action-btn.edit:hover {
+    color: var(--info-color);
+}
+
+.action-btn.delete:hover {
+    color: var(--error-color);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+}
+
+.status-inactive {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.role-admin {
+    background-color: rgba(124, 77, 255, 0.1);
+    color: var(--primary-color);
+}
+
+.role-user {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: var(--info-color);
+}

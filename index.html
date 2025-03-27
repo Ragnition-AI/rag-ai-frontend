@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ragnition AI</title>
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.goog'leapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="light-mode">
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Login Page -->
+        <div id="login-page" class="page">
+            <div class="login-container">
+                <div class="login-header">
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                        <h1>Ragnition</h1>
+                    </div>
+                    <p>Your intelligent assistant</p>
+                </div>
+                
+                <div class="form-tabs">
+                    <button class="tab-btn active" data-tab="login-form">Login</button>
+                    <button class="tab-btn" data-tab="register-form">Register</button>
+                </div>
+                
+                <div class="form-container">
+                    <form id="login-form" class="form active">
+                        <div class="input-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" id="login-username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <div class="form-error" id="login-error"></div>
+                        <button type="submit" class="btn btn-primary">Login</button>
+                    </form>
+                    
+                    <form id="register-form" class="form">
+                        <div class="input-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" id="register-username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="register-fullname">Full Name</label>
+                            <input type="text" id="register-fullname">
+                        </div>
+                        <div class="input-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="register-confirm">Confirm Password</label>
+                            <input type="password" id="register-confirm" required>
+                        </div>
+                        <div class="form-error" id="register-error"></div>
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Chat App Page -->
+        <div id="chat-page" class="page hidden">
+            <!-- App Header -->
+            <header class="app-header">
+                <div class="header-left">
+                    <button id="sidebar-toggle" class="btn-icon">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="logo">
+                        <i class="fas fa-robot"></i>
+                        <h1>Ragnition Chat</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button id="theme-toggle" class="btn-icon">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-menu">
+                        <button id="user-menu-btn" class="btn-icon">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="username-display">User</span>
+                        </button>
+                        <div class="user-dropdown">
+                            <a href="#" id="settings-link"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="admin-link" class="admin-only hidden"><i class="fas fa-shield-alt"></i> Admin</a>
+                            <a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Main Content Area -->
+            <div class="content-area">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <h2>Chats</h2>
+                        <button id="new-chat-btn" class="btn-icon">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="sidebar-content">
+                        <div class="chat-list" id="chat-list">
+                            <!-- Chat items will be added here dynamically -->
+                        </div>
+                    </div>
+                </aside>
+                
+                <!-- Chat Area -->
+                <main class="chat-area">
+                    <div class="empty-state" id="empty-state">
+                        <i class="fas fa-robot"></i>
+                        <h2>How can I help you today?</h2>
+                        <p>Start a new conversation to interact with the AI assistant.</p>
+                    </div>
+                    
+                    <div class="chat-container hidden" id="chat-container">
+                        <div class="chat-header">
+                            <h2 id="chat-title">New Conversation</h2>
+                            <div class="chat-actions">
+                                <button id="edit-title-btn" class="btn-icon">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="messages-container" id="messages-container">
+                            <!-- Messages will be added here dynamically -->
+                        </div>
+                        
+                        <div class="chat-input-container">
+                            <form id="message-form">
+                                <div class="input-wrapper">
+                                    <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+                                    <button type="submit" class="send-btn">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        
+        <!-- Admin Page -->
+        <div id="admin-page" class="page hidden">
+            <header class="app-header">
+                <div class="header-left">
+                    <button id="back-to-chat" class="btn-icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <div class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <h1>Admin Panel</h1>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button id="admin-theme-toggle" class="btn-icon">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="admin-container">
+                <div class="admin-sidebar">
+                    <nav class="admin-nav">
+                        <a href="#" class="admin-nav-item active" data-section="users">
+                            <i class="fas fa-users"></i>
+                            <span>Users</span>
+                        </a>
+                        <a href="#" class="admin-nav-item" data-section="analytics">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Analytics</span>
+                        </a>
+                        <a href="#" class="admin-nav-item" data-section="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </div>
+                
+                <div class="admin-content">
+                    <section id="users-section" class="admin-section active">
+                        <h2>User Management</h2>
+                        <div class="admin-card">
+                            <div class="table-container">
+                                <table class="admin-table" id="users-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Full Name</th>
+                                            <th>Status</th>
+                                            <th>Role</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- User rows will be added here dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="analytics-section" class="admin-section">
+                        <h2>Analytics</h2>
+                        <div class="admin-card">
+                            <p>Analytics dashboard will be implemented in the future.</p>
+                        </div>
+                    </section>
+                    
+                    <section id="settings-section" class="admin-section">
+                        <h2>System Settings</h2>
+                        <div class="admin-card">
+                            <p>System settings will be implemented in the future.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modals -->
+        <div id="edit-title-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Chat Title</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="chat-title-input" placeholder="Enter chat title">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary close-modal">Cancel</button>
+                    <button class="btn btn-primary" id="save-title-btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
